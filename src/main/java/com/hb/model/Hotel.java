@@ -1,13 +1,15 @@
 package com.hb.model;
 
-import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+
+@Data
 //@Table(name = "hotels")
 public class Hotel {
 
-    private int hotelId;
+    private Integer hotelId;
 
     private String hotelName;
 
