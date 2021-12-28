@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Data
 public class Room {
@@ -24,4 +25,8 @@ public class Room {
 
     private Integer roomCapacity;
 
+    private String roomDescribe;
+
+    private Date checkIn;
+    private Date checkOut;
 }
