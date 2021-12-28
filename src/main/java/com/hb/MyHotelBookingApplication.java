@@ -1,14 +1,14 @@
-package com.mycompany;
+package com.hb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 
-public class MywebappApplication {
+public class MyHotelBookingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MywebappApplication.class, args);
+        SpringApplication.run(MyHotelBookingApplication.class, args);
     }
 
 }

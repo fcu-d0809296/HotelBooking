@@ -1,4 +1,4 @@
-package com.mycompany.user;
+package com.hb.model;
 
 import lombok.Data;
 

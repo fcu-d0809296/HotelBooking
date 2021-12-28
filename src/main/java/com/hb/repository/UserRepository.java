@@ -1,5 +1,6 @@
-package com.mycompany.user;
+package com.hb.repository;
 
+import com.hb.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 

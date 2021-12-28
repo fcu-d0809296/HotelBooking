@@ -1,4 +1,4 @@
-package com.mycompany.user;
+package com.hb.user;
 
 import org.junit.jupiter.api.Test;
 
