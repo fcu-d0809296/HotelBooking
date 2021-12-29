@@ -1,7 +1,7 @@
 package com.hb.controller;
 
 import com.hb.model.User;
-import com.hb.UserNotFoundException;
+import com.hb.exception.NotFoundException;
 import com.hb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +53,7 @@ public class UserController {
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
 
             return "user_from";
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/users";
         }
@@ -64,7 +64,7 @@ public class UserController {
         try {
             service.delete(id);
             ra.addFlashAttribute("message", "The user id" + id + "has been deleted");
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/users";
