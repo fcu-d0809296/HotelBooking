@@ -3,7 +3,7 @@ package com.hb.service;
 
 import com.hb.model.User;
 import com.hb.repository.UserRepository;
-import com.hb.UserNotFoundException;
+import com.hb.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,22 +23,22 @@ public class UserService {
         repo.save(user);
     }
 
-    public User get(Integer id) throws UserNotFoundException {
+    public User get(Integer id) throws NotFoundException {
         Optional<User> result = repo.findById(id);
         if (result.isPresent()) {
             return result.get();
         }
-        throw new UserNotFoundException("Could not find any users with ID" + id);
+        throw new NotFoundException("Could not find any users with ID" + id);
     }
 
     /*
     Implement for the delete handling
      */
 
-    public void delete(int id) throws UserNotFoundException {
+    public void delete(int id) throws NotFoundException {
         long count = repo.countById(id);
         if (count == 0) {
-            throw new UserNotFoundException("Could not find any users with ID" + id);
+            throw new NotFoundException("Could not find any users with ID" + id);
         }
         repo.deleteById(id);
     }
