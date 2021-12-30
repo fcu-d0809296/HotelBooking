@@ -20,16 +20,16 @@ public class HotelService{
     public void addHotel(String name, String location, String desc) {
         Hotel hotel = new Hotel();
         hotel.setHotelName(name);
-        hotel.setHotelLocation("taipei");
-        hotel.setHotelDescribe("NO");
+        hotel.setHotelLocation(location);
+        hotel.setHotelDescribe(desc);
         hotelRepo.save(hotel);
     }
     public List<Hotel> listAllHotel() {
         return (List<Hotel>) hotelRepo.findAll();
     }
-    public List<Room> listHotelsRoomById(Integer id) {
-        return (List<Room>) hotelRepo.listHotelsRoom(id);
-    }
+//    public List<Room> listHotelsRoomById(Integer id) {
+//        return (List<Room>) hotelRepo.listHotelsRoom(id);
+//    }
     public Hotel getHotelById(Integer id) throws NotFoundException {
         Optional<Hotel> result = hotelRepo.findById(id);
         if (result.isPresent()) {
@@ -58,15 +58,15 @@ public class HotelService{
 //        p.setHotelDescribe(newDescribe);
 //        hotelRepo.save(p);
     }
-    public void deleteHotel(int id) throws NotFoundException {
-        Optional<Hotel> result = hotelRepo.findById(id);
-        roomRepo.deleteAll(listHotelsRoomById(id));
-        if (result.isPresent()) {
-            hotelRepo.deleteById(id);
-        }
-        throw new NotFoundException("Could not find any hotels with ID" + id);
-
-    }
+//    public void deleteHotel(int id) throws NotFoundException {
+//        Optional<Hotel> result = hotelRepo.findById(id);
+//        roomRepo.deleteAll(listHotelsRoomById(id));
+//        if (result.isPresent()) {
+//            hotelRepo.deleteById(id);
+//        }
+//        throw new NotFoundException("Could not find any hotels with ID" + id);
+//
+//    }
 //    public void save(Hotel hotel) {
 //        hotelRepo.save(hotel);
 //    }

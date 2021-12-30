@@ -11,8 +11,8 @@
     <groupId>com.mycompany</groupId>
     <artifactId>Mywebapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Mywebapp</name>
-    <description>Mywebapp</description>
+    <name>MyHotelBookingApp</name>
+    <description>MyHotelBookingApp</description>
     <properties>
         <java.version>10</java.version>
         <maven.compiler.source>10</maven.compiler.source>

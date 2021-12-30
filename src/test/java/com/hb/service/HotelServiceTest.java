@@ -1,5 +1,6 @@
 package com.hb.service;
 
+import com.hb.MyHotelBookingApplication;
 import com.hb.model.Hotel;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
@@ -19,25 +20,33 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import java.sql.Statement;
+
+//@RunWith(SpringRunner.class)
+////@ContextConfiguration(classes = ElastSearchBootApplication.class)
+//@SpringBootTest(classes = {MyHotelBookingApplication.class})
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Rollback
 class HotelServiceTest {
     @Autowired
     private HotelService hotelService;
-    @Autowired
-    private HotelRepository hotelRepository;
+    @Autowired private HotelRepository hotelRepository;
+
+
 
     @Test
     void addHotel(){
         Hotel hotel = new Hotel();
-        hotel.setId(3);
         hotel.setHotelName("hotel3");
         hotel.setHotelLocation("tainan");
         hotel.setHotelDescribe("test3");
-        //hotelRepository.save(hotel);
+        //System.out.println(hotel);
+        //System.out.println(hotelRepository.findAllByLocation("Taipei"));
+        hotelRepository.save(hotel);
         //Hotel savedHotel = hotelRepository.save(hotel);
-
-        System.out.println(hotel.toString());
+        //System.out.println(hotelRepository.findAll());
+        //System.out.println(hotel.toString());
         //Assertions.assertThat(savedHotel).isNotNull();
 
 //        User user = new User();
