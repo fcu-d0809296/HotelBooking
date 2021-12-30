@@ -1,6 +1,7 @@
 package com.hb.model;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +12,8 @@ import java.util.ArrayList;
 @Table(name = "hotels")
 public class Hotel {
     @Id
-    private Integer hotelId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 45, nullable = false, name = "name")
     private String hotelName;
@@ -22,5 +24,17 @@ public class Hotel {
     @Column(length = 100, nullable = true, name = "describe")
     private String hotelDescribe;
 
-    private ArrayList<Room> hotelRooms ;
+//    @Nullable
+//    private ArrayList<Room> hotelRooms ;
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + getId() +
+                ", hotelName='" + getHotelName() + '\'' +
+                ", hotelLocation='" + getHotelLocation() + '\'' +
+                ", hotelDescribe='" + getHotelDescribe() + '\'' +
+//                ", hotelRooms='" + getHotelRooms() + '\'' +
+                '}';
+    }
 }

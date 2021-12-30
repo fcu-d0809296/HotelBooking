@@ -22,13 +22,14 @@ public class User {
     @Column(length = 16, nullable = false, name = "password")
     private String userPassword;
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + getId() +
-//
-//                ", firstName='" + getFirstName() + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + getId() +
+                ", userName='" + getUserName() + '\'' +
+                ", userEmail='" + getUserEmail() + '\'' +
+                ", userPassword='" + getUserPassword() + '\'' +
+                '}';
+    }
 
 }

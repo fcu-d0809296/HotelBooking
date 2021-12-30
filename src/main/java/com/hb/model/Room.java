@@ -38,4 +38,20 @@ public class Room {
     private Date checkIn;
     @Column(nullable = true, name = "check_out")
     private Date checkOut;
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + getRoomId() +
+                ", hotelId='" + getHotelId() + '\'' +
+                ", roomFloor='" + getRoomFloor() + '\'' +
+                ", roomState='" + getRoomState() + '\'' +
+                ", roomPrice='" + getRoomPrice() + '\'' +
+                ", roomCapacity='" + getRoomCapacity() + '\'' +
+                ", customerName='" + getCustomerName() + '\'' +
+                ", roomDescribe='" + getRoomDescribe() + '\'' +
+                ", checkIn='" + getCheckIn() + '\'' +
+                ", checkOut='" + getCheckOut() + '\'' +
+                '}';
+    }
 }
