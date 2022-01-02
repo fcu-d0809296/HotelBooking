@@ -1,85 +1,103 @@
 package com.hb.service;
 
-import com.hb.MyHotelBookingApplication;
-import com.hb.model.Hotel;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-
-import com.hb.service.HotelService;
-import com.hb.repository.HotelRepository;
+import com.hb.model.*;
+import com.hb.repository.*;
+import org.junit.*;
 import org.junit.runner.RunWith;
+import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import java.util.List;
 
-import java.sql.Statement;
 
-//@RunWith(SpringRunner.class)
-////@ContextConfiguration(classes = ElastSearchBootApplication.class)
-//@SpringBootTest(classes = {MyHotelBookingApplication.class})
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback
-class HotelServiceTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class HotelServiceTest {
     @Autowired
-    private HotelService hotelService;
-    @Autowired private HotelRepository hotelRepository;
-
-
+    HotelRepository hotelRepository;
+    @Autowired
+    RoomRepository roomRepository;
+    @Autowired
+    HotelService hotelService;
 
     @Test
-    void addHotel(){
-        Hotel hotel = new Hotel();
-        hotel.setHotelName("hotel3");
-        hotel.setHotelLocation("tainan");
-        hotel.setHotelDescribe("test3");
-        //System.out.println(hotel);
-        //System.out.println(hotelRepository.findAllByLocation("Taipei"));
+    public void listHotels() {
+        Assertions.assertThat(hotelService.listHotels().size()>0);
+        Assertions.assertThat(hotelService.listHotels().size() == hotelRepository.count());
+        System.out.println(hotelService.listHotels());
+//        System.out.println(roomRepository.findAll());
+    }
+    @Test
+    public void addHotelWithArgs() {
+        long size = hotelRepository.count();
+        hotelService.addHotel("Test Name","Tainan","test3");
+        Assertions.assertThat(hotelRepository.count() == size+1);
+        hotelService.deleteByHotelName("Test Name");
+    }
+    @Test
+    public void addHotelWithObj() {
+        long size = hotelRepository.count();
+        Hotel hotel = new Hotel("Test Name","Tainan","test3");
+        hotelService.addHotel(hotel);
+        Assertions.assertThat(hotelRepository.count() == size+1);
+        hotelService.deleteByHotelName("Test Name");
+    }
+    @Test
+    public void getHotelByName() {
+        hotelService.addHotel("Test Name","Tainan","test3");
+        Hotel hotel = hotelService.getHotelByName("Test Name");
+        Assertions.assertThat("Test Name" == hotel.getName());
+        hotelRepository.delete(hotel);
+        hotelRepository.clearAutoIncrement();
+    }
+    @Test
+    public void clearAutoIncrement() {
+        hotelRepository.clearAutoIncrement();
+    }
+    @Test
+    public void deleteByHotelName() {
+        Hotel hotel = new Hotel("Test Name","Tainan","test3");
         hotelRepository.save(hotel);
-        //Hotel savedHotel = hotelRepository.save(hotel);
-        //System.out.println(hotelRepository.findAll());
-        //System.out.println(hotel.toString());
-        //Assertions.assertThat(savedHotel).isNotNull();
-
-//        User user = new User();
-//
-//        user.setFirstName("abcjsdksjdk");
-//
-//       User savedUser = repo.save(user);
-//       System.out.println(user);
-//       Assertions.assertThat(savedUser).isNotNull();
-//       Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
+        hotelService.deleteByHotelName("Test Name");
+        Assertions.assertThat(hotelService.getHotelByName("Test Name") == null);
+    }
+    @Test
+    public void getHotelsByLocation() {
+        List<Hotel> hotels = hotelService.listHotelsByLocation("Taipei");
+        Boolean flag = false;
+        for(int i=0; i>hotels.size()-1; i++) {
+            if(hotels.get(i).getLocation() != hotels.get(i+1).getLocation())
+                flag = true;
+        }
+        Assertions.assertThat(flag == false);
+    }
+    @Test
+    public void changeLocationByHotelName() {
+        hotelService.addHotel("Test Name","Tainan","test3");
+        hotelService.changeLocationByHotelName("Test Name","change location test");
+        Assertions.assertThat(hotelService.getHotelByName("Test Name").getLocation() == "change location test");
+        hotelService.deleteByHotelName("Test Name");
 
     }
-//    @Test
-//    void listAllHotel() {
-//    }
-//
-//    @Test
-//    void listHotelsRoomById() {
-//    }
-//
-//    @Test
-//    void getHotelById() {
-//    }
-//
-//    @Test
-//    void changeHotelLocation() {
-//    }
-//
-//    @Test
-//    void changeHotelDescribe() {
-//    }
-//
-//    @Test
-//    void deleteHotel() {
-//    }
+    @Test
+    public void changeCommentByHotelName() {
+        hotelService.addHotel("Test Name","Tainan","test3");
+        hotelService.changeCommentByHotelName("Test Name","change comment test");
+        Assertions.assertThat(hotelService.getHotelByName("Test Name").getLocation() == "change comment test");
+        hotelService.deleteByHotelName("Test Name");
+    }
+    @Test
+    public void listHotelsRoomByName() {
+        List<Room> rooms = hotelService.listHotelsRoomByName("hotel_B");
+        Boolean flag = false;
+        for(int i=0; i>rooms.size()-1; i++) {
+            if(rooms.get(i).getNameHotel() != rooms.get(i+1).getNameHotel())
+                flag = true;
+        }
+        Assertions.assertThat(flag == false);
+        System.out.println(roomRepository.findByNameHotel("hotel_B"));
+        //hotelService.listHotelsRoomByName("hotel_A")
+    }
+
 }

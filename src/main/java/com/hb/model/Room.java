@@ -1,6 +1,9 @@
 package com.hb.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,49 +12,69 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "rooms")
+@EntityListeners(AuditingEntityListener.class)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roomId;
-    @Column(nullable = false, name = "hotel_id")
-    private Integer hotelId;
+    @Column(name= "id")
+    private Long id;
 
-    @Column(nullable = false, name = "floor")
-    private Integer roomFloor;
+    @Column(name = "name_hotel")
+    private String nameHotel;
 
-    @Column(nullable = false, name = "state")
-    private Boolean roomState;
+    @Column(name = "floor")
+    private Integer floor;
 
-    @Column(nullable = false, name = "price")
-    private Integer roomPrice;
+    @Column(name = "price")
+    private Integer price;
 
-    @Column(nullable = false, name = "capacity")
-    private Integer roomCapacity;
+    @Column(name = "capacity")
+    private Integer capacity;
 
-    @Column(nullable = true, name = "customer_name")
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "state")
+    private Boolean state;
+
+    @Column(name = "customer_name")
     private String customerName;
 
-    @Column(nullable = true, name = "describe")
-    private String roomDescribe;
-
-    @Column(nullable = true, name = "check_in")
+    @Column(name = "check_in")
     private Date checkIn;
-    @Column(nullable = true, name = "check_out")
+    @Column(name = "check_out")
     private Date checkOut;
+
+    public Room() {
+        this.state = true;
+    }
+
+    public Room(String nameHotel, Integer floor,Integer price,Integer capacity,String comment) {
+        this.nameHotel = nameHotel;
+        this.floor = floor;
+        this.state = true;
+        this.price = price;
+        this.capacity = capacity;
+        this.comment = comment;
+        this.customerName = null;
+        this.checkIn = null;
+        this.checkOut = null;
+    }
 
     @Override
     public String toString() {
-        return "Room{" +
-                "id=" + getRoomId() +
-                ", hotelId='" + getHotelId() + '\'' +
-                ", roomFloor='" + getRoomFloor() + '\'' +
-                ", roomState='" + getRoomState() + '\'' +
-                ", roomPrice='" + getRoomPrice() + '\'' +
-                ", roomCapacity='" + getRoomCapacity() + '\'' +
+        return "Room {" +
+                "id=" + getId() +
+                ", nameHotel='" + getNameHotel() + '\'' +
+                ", floor='" + getFloor() + '\'' +
+                ", state='" + getState() + '\'' +
+                ", price='" + getPrice() + '\'' +
+                ", capacity='" + getCapacity() + '\'' +
                 ", customerName='" + getCustomerName() + '\'' +
-                ", roomDescribe='" + getRoomDescribe() + '\'' +
+                ", describe='" + getComment() + '\'' +
                 ", checkIn='" + getCheckIn() + '\'' +
                 ", checkOut='" + getCheckOut() + '\'' +
-                '}';
+                '}'+"\n";
     }
+
 }
