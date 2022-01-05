@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="hotel_search.css" />
+    <link rel="stylesheet" href="../static/css/hotel_search.css" />
     <title>Welcome To Homing</title>
 </head>
 
@@ -37,5 +37,33 @@
 
     <input type="button" value="Kaohsiung" onclick="location.href='hotel_search_Kaohsiung.html'" ;
         style="font-family:fantasy; background-color: transparent; width:200px;height:50px;font-size:35px;position:absolute; right:1225px; top:610px; color:#4e3e1f; border:none" />
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>name</th>
+
+            <th>location</th>
+
+            <th>comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="room: ${listHotel}">
+            <tr>
+                <td>[[${room.nameHotel}]]</td>
+
+                <td>[[${room.floor}]]</td>
+
+                <td>[[${room.price}]]</td>
+                <td>[[${room.capacity}]]</td>
+                <td>[[${room.comment}]]</td>
+                <td>[[${room.checkIn}]]</td>
+                <td>[[${room.checkOut}]]</td>
+
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
 </body>
 <html>
