@@ -1,46 +1,33 @@
 body{
-	background-color: #A4744D; 
-	background-image:  url("https://i.imgur.com/Bl9XrGk.jpg");
-	background-position: center-bottom;
-	background-repeat: no-repeat;
+	background-color: #EDE0C9;
+	/*background-image:  url("https://i.imgur.com/Bl9XrGk.jpg");*/
 }
-
-.productList{
-	width: 1100px;
-	margin: 20px 20%;
-	padding-top: 80px;
-	padding-right: 10px;
+html,body {
+	height: 100%;
 }
-
-ul li{
-	list-style-type: none;
+.navbar{
+	background-color: #a4744c;
 }
-
-.productList img{
-	display:block; 
-	margin:auto;
-	width: 100%;
-	margin-top: 10px;
-}
-
-.productList li{
-	position: relative;
-	float:left;
-	width: 220px;
-	height: 280px;
+#myCard{
 	border: 3px dotted #efc7c1b6;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 30px;
-	padding-right: 5px;
-	padding-left: 10px;
 }
-
-.productList li input{
-	font-size: 20px;
-	font-weight: 900;
-	color: #856d40;
-	background-color:#EDE0C9;
-	border:2px blue none;
-	margin-top: 30px;
+#myCardDeck{
+	height: fit-content;
+}
+.sidebar{
+	background-color: #c9aa8b;
+}
+#sideLink{
+	font-family:fantasy;
+	font-size:35px;
+	color:#4e3e1f;
+}
+.navbar-collapse{
+	font-family: Georgia;
+	font-size:20px;
+	color:#FFFAF0;
+}
+.card-img-top {
+	width: 350px;
+	height: 185px;
 }
