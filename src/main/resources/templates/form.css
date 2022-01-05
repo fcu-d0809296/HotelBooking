@@ -1,0 +1,31 @@
+body{
+	font-family:  Georgia;
+	background-color: #F8F8FF; 
+	background-image:  url("https://i.imgur.com/4cecNZd.jpg");
+	background-position: center-bottom;
+	background-repeat: no-repeat;
+}
+
+.content{
+	width: 500px;
+	height: 650px;
+	position: absolute;
+	top: 15%;
+	left: 33%;
+    background-color: #FFF8DC;
+	border-radius: 20px;
+}
+
+.but button{
+	font-family: Georgia;
+	position: absolute;
+	top: 590px;
+	left: 25px;
+	font-size: 15px;
+	width: 450px;
+	height: 40px;
+	color: #FFFFFF;
+	border-radius: 10px;
+	background-color: #856d40;
+	border: 1px solid #856d40;
+}
