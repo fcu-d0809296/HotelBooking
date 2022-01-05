@@ -30,7 +30,7 @@ public class RoomServiceTest {
                 flag = true;
         }
         for(int i=0; i>rooms.size(); i++) {
-            if(rooms.get(i).getState() == true)
+            if(rooms.get(i).getState() == 0)
                 flag = true;
         }
         Assertions.assertThat(flag == false);
@@ -42,6 +42,11 @@ public class RoomServiceTest {
         roomService.editRoomById((long)3,room);
         Assertions.assertThat(roomRepository.findById((long)3).get().getComment() == "editTest2");
     }
+    @Test
+    public void listState1(){
+        System.out.println(roomService.listState1());
+    }
+
 
 
 

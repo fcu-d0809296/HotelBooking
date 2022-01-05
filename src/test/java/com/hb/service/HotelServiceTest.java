@@ -26,7 +26,6 @@ public class HotelServiceTest {
         Assertions.assertThat(hotelService.listHotels().size()>0);
         Assertions.assertThat(hotelService.listHotels().size() == hotelRepository.count());
         System.out.println(hotelService.listHotels());
-//        System.out.println(roomRepository.findAll());
     }
     @Test
     public void addHotelWithArgs() {
@@ -97,7 +96,6 @@ public class HotelServiceTest {
         }
         Assertions.assertThat(flag == false);
         System.out.println(roomRepository.findByNameHotel("hotel_B"));
-        //hotelService.listHotelsRoomByName("hotel_A")
     }
 
 }

@@ -34,12 +34,13 @@ public class RoomService{
     public List<Room> listAvailable(String nameHotel) {
         return roomRepo.findByNameHotelAndState(nameHotel,0);
     }
+
     public List<Room> listRoomsByHotelName(String name) {
         return roomRepo.findByNameHotel(name);
     }
     public void clearBookingRoomById(Long id) {
         Room room = getRoomById(id);
-        room.setState(true);
+        room.setState(0);
         room.setCustomerName(null);
         room.setCheckIn(null);
         room.setCheckOut(null);
@@ -47,7 +48,7 @@ public class RoomService{
     }
     public void bookingRoomById(Long id, String customerName, Date checkIn, Date checkOut) {
         Room room = getRoomById(id);
-        room.setState(false);
+        room.setState(1);
         room.setCustomerName(customerName);
         room.setCheckIn(checkIn);
         room.setCheckOut(checkOut);
@@ -65,6 +66,9 @@ public class RoomService{
         roomRepo.deleteById(id);
     }
 
+    public List<Room> listState1() {
+        return roomRepo.findByState(1);
+    }
 
 //    public Hotel getHotelById(Integer id) throws NotFoundException {
 //        Optional<Hotel> result = hotelRepo.findById(id);

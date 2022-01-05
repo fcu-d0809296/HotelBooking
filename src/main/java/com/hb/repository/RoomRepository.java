@@ -13,6 +13,7 @@ public interface RoomRepository extends CrudRepository<Room, Long> {
 
     List<Room> findByNameHotel(String name);
     List<Room> findByNameHotelAndState(String name,Integer state);
+    List<Room> findByState(Integer state);
     void deleteAllByNameHotel(String name);
     @Modifying
     @Query(value = "alter table rooms AUTO_INCREMENT = 1", nativeQuery = true)

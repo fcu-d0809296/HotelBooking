@@ -35,7 +35,7 @@ public class Room {
     private String comment;
 
     @Column(name = "state")
-    private Boolean state;
+    private Integer state;
 
     @Column(name = "customer_name")
     private String customerName;
@@ -46,13 +46,13 @@ public class Room {
     private Date checkOut;
 
     public Room() {
-        this.state = true;
+        this.state = 0;
     }
 
     public Room(String nameHotel, Integer floor,Integer price,Integer capacity,String comment) {
         this.nameHotel = nameHotel;
         this.floor = floor;
-        this.state = true;
+        this.state = 0;
         this.price = price;
         this.capacity = capacity;
         this.comment = comment;
