@@ -19,4 +19,5 @@ public interface RoomRepository extends CrudRepository<Room, Long> {
     @Query(value = "alter table rooms AUTO_INCREMENT = 1", nativeQuery = true)
     public void clearAutoIncrement();
 
+
 }

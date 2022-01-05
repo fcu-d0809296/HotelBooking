@@ -19,4 +19,8 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
     @Query(value = "alter table hotels AUTO_INCREMENT = 1", nativeQuery = true)
     void clearAutoIncrement();
 
+    @Query(value = "SELECT location FROM hotels GROUP BY location", nativeQuery = true)
+    List<String> listAllGroupLocation();
+
+    //List<Hotel> countHotelByLocation();
 }

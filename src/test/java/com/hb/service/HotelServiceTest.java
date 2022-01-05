@@ -71,21 +71,21 @@ public class HotelServiceTest {
         }
         Assertions.assertThat(flag == false);
     }
-    @Test
-    public void changeLocationByHotelName() {
-        hotelService.addHotel("Test Name","Tainan","test3");
-        hotelService.changeLocationByHotelName("Test Name","change location test");
-        Assertions.assertThat(hotelService.getHotelByName("Test Name").getLocation() == "change location test");
-        hotelService.deleteByHotelName("Test Name");
-
-    }
-    @Test
-    public void changeCommentByHotelName() {
-        hotelService.addHotel("Test Name","Tainan","test3");
-        hotelService.changeCommentByHotelName("Test Name","change comment test");
-        Assertions.assertThat(hotelService.getHotelByName("Test Name").getLocation() == "change comment test");
-        hotelService.deleteByHotelName("Test Name");
-    }
+//    @Test
+//    public void changeLocationByHotelName() {
+//        hotelService.addHotel("Test Name","Tainan","test3");
+//        hotelService.changeLocationByHotelName("Test Name","change location test");
+//        Assertions.assertThat(hotelService.getHotelByName("Test Name").getLocation() == "change location test");
+//        hotelService.deleteByHotelName("Test Name");
+//
+//    }
+//    @Test
+//    public void changeCommentByHotelName() {
+//        hotelService.addHotel("Test Name","Tainan","test3");
+//        hotelService.changeCommentByHotelName("Test Name","change comment test");
+//        Assertions.assertThat(hotelService.getHotelByName("Test Name").getLocation() == "change comment test");
+//        hotelService.deleteByHotelName("Test Name");
+//    }
     @Test
     public void listHotelsRoomByName() {
         List<Room> rooms = hotelService.listHotelsRoomByName("hotel_B");
@@ -96,6 +96,10 @@ public class HotelServiceTest {
         }
         Assertions.assertThat(flag == false);
         System.out.println(roomRepository.findByNameHotel("hotel_B"));
+    }
+    @Test
+    public void listAllGroupLocation() {
+        System.out.println(hotelService.listAllGroupLocation());
     }
 
 }

@@ -42,26 +42,29 @@ public class HotelService{
     public Hotel getHotelById(Long id) {
         return hotelRepo.findById(id).get();
     }
-    public void deleteByHotelName(String name) {
-        Hotel h = getHotelByName(name);
-        hotelRepo.deleteById(h.getId());
-        hotelRepo.clearAutoIncrement();
-    }
     public void editHotelById(Long id, Hotel newData) {
         Hotel oldData = getHotelById(id);
         newData.setId(oldData.getId());
         hotelRepo.save(newData);
     }
-    public void changeLocationByHotelName(String name, String newLocation) {
+    public void deleteByHotelName(String name) {
         Hotel h = getHotelByName(name);
-        h.setLocation(newLocation);
-        hotelRepo.save(h);
+        hotelRepo.deleteById(h.getId());
+        hotelRepo.clearAutoIncrement();
     }
-    public void changeCommentByHotelName(String name, String newComment) {
-        Hotel h = getHotelByName(name);
-        h.setComment(newComment);
-        hotelRepo.save(h);
+    public List<String> listAllGroupLocation() {
+        return hotelRepo.listAllGroupLocation();
     }
+//    public void changeLocationByHotelName(String name, String newLocation) {
+//        Hotel h = getHotelByName(name);
+//        h.setLocation(newLocation);
+//        hotelRepo.save(h);
+//    }
+//    public void changeCommentByHotelName(String name, String newComment) {
+//        Hotel h = getHotelByName(name);
+//        h.setComment(newComment);
+//        hotelRepo.save(h);
+//    }
 
 //    public Hotel getHotelById(Integer id) throws NotFoundException {
 //        Optional<Hotel> result = hotelRepo.findById(id);

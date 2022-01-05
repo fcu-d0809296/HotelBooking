@@ -27,6 +27,9 @@ public class Hotel {
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "image_hotel")
+    private String imgHotel;
 //
 //    public Long getId() { return id; }
 //    public void setId(Long id) { this.id = id;}
