@@ -31,7 +31,7 @@ public class HotelController {
         model.addAttribute("listHotels",listHotels);
         return "hotel-list";
     }
-    @GetMapping("/hotel-{location}-test")
+    @GetMapping("/hotel-{location}")
     public String showTaipei(Model model,@PathVariable("location") String location){
         List<Hotel> listLocationHotel = hotelService.listHotelsByLocation(location);
         model.addAttribute("listHotels",listLocationHotel);
