@@ -30,6 +30,9 @@ public class Hotel {
 
     @Column(name = "image_hotel")
     private String imgHotel;
+
+    @Column(name = "watchlist")
+    private String watchlist;
 //
 //    public Long getId() { return id; }
 //    public void setId(Long id) { this.id = id;}
